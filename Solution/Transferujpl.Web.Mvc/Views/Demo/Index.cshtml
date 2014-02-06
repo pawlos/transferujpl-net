@@ -1,0 +1,14 @@
+﻿@using Transferujpl.Web.Helpers;
+@using Transferujpl.Web.Helpers.Settings;
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@Html.TransferujPlForm(new TransferujPlSettings { 
+    SellerId = 2988,
+    Amount = 225,
+    Description = "Opłata za konto premium http://dotnetomaniak.pl",
+    BuyerFirstName = "Paweł",
+    BuyerLastName = "Łukasik"
+})
