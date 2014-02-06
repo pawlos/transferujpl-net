@@ -6,6 +6,7 @@ namespace Transferujpl.Web.Helpers.Attributes
     public class MapFromAttribute : Attribute
     {
         public string Name { get; set; }
+        
         public MapFromAttribute(string name)
         {
             Name = name;

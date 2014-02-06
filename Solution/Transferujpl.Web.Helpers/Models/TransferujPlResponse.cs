@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Specialized;
 using Transferujpl.Web.Helpers.Attributes;
+using System.Linq;
+using Common.Logging;
 
 namespace Transferujpl.Web.Helpers.Models
 {
@@ -27,5 +30,26 @@ namespace Transferujpl.Web.Helpers.Models
         public string BuyerEmail { get; set; }
         [MapFrom("md5sum")]
         public string Md5Sum { get; set; }
+
+        public static TransferujPlResponse FromNameValueCollection(NameValueCollection items)
+        {
+            ILog log = LogManager.GetCurrentClassLogger();
+            log.Info("FromNameValueCollection started");
+            var transferujPlResponse = new TransferujPlResponse();
+            var properties = typeof(TransferujPlResponse).GetProperties().Where(x => x.CustomAttributes.Any(a => a.AttributeType == typeof(MapFromAttribute)));
+            foreach (var property in properties)
+            {
+                var name = property.CustomAttributes.First().ConstructorArguments[0].Value.ToString();
+                if (items.AllKeys.Contains(name))
+                {
+                    var type = property.PropertyType;
+                    if (log.IsDebugEnabled)
+                        log.DebugFormat("{0}-{1}", property.Name, items[name]);
+                    property.SetValue(transferujPlResponse, Convert.ChangeType(items[name], type));
+                }
+            }
+            log.Info("FromNameValueCollection ended");
+            return transferujPlResponse;
+        }
     }
 }
