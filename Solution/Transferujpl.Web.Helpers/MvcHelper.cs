@@ -47,6 +47,10 @@
                                         .Select(x => x.ToString("X2")).Aggregate((x, y) => x + y));
                 form.InnerHtml += md5Sum.ToString(TagRenderMode.SelfClosing);
             }
+            TagBuilder submit = new TagBuilder("input");
+            submit.Attributes.Add("type","submit");
+            submit.Attributes.Add("value", "Wyślij");
+            form.InnerHtml += submit.ToString(TagRenderMode.SelfClosing);
             return MvcHtmlString.Create(form.ToString(TagRenderMode.Normal));
         }
     }
