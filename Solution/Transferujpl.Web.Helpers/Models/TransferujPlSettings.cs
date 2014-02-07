@@ -28,7 +28,7 @@ namespace Transferujpl.Web.Helpers.Settings
         [RenderToFormAsAttribute("pow_url")]
         public dynamic SuccessReturnUrl { get; set; }
         [RenderToFormAsAttribute("pow_url_blad")]
-        public dynamic FailureReturenUrl { get; set; }
+        public dynamic FailureReturnUrl { get; set; }
 
         //Buyer
         [RenderToFormAsAttribute("imie")]
