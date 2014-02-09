@@ -76,6 +76,7 @@
     <Compile Include="Attributes\MapFromAttribute.cs" />
     <Compile Include="Attributes\RenderToFormAsAttribute.cs" />
     <Compile Include="Binders\TransferujPlResponseModelBinder.cs" />
+    <Compile Include="Extensions\TypeExtensions.cs" />
     <Compile Include="Models\TransferujPlResponse.cs" />
     <Compile Include="MvcHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

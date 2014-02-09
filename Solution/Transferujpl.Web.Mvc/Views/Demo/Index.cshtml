@@ -5,10 +5,14 @@
 }
 
 
-@Html.TransferujPlForm(new TransferujPlSettings { 
+@Html.TransferujPlForm(new TransferujPlSettings
+{
     SellerId = 2988,
     Amount = 225,
     Description = "Opłata za konto premium http://dotnetomaniak.pl",
     BuyerFirstName = "Paweł",
-    BuyerLastName = "Łukasik"
+    BuyerLastName = "Łukasik",
+    FailureReturnUrl = new { controller = "Demo", action = "Failure" },
+    SuccessReturnUrl = new { controller = "Demo", action = "Success" },
+    NotificationUrl = new { controller = "Demo", action = "Notification" }
 })

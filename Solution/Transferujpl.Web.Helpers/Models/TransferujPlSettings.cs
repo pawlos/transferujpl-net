@@ -26,9 +26,9 @@ namespace Transferujpl.Web.Helpers.Settings
         [RenderToFormAsAttribute("wyn_email")]
         public string NotificationEmail { get; set; }
         [RenderToFormAsAttribute("pow_url")]
-        public dynamic SuccessReturnUrl { get; set; }
+        public object SuccessReturnUrl { get; set; }
         [RenderToFormAsAttribute("pow_url_blad")]
-        public dynamic FailureReturnUrl { get; set; }
+        public object FailureReturnUrl { get; set; }
 
         //Buyer
         [RenderToFormAsAttribute("imie")]

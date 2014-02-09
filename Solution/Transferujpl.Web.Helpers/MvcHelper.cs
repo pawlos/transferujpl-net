@@ -4,9 +4,13 @@
     using Settings;
     using System;
     using System.Linq;
-    using Transferujpl.Web.Helpers.Attributes;
     using System.Text;
     using System.Security.Cryptography;
+    using System.Reflection;
+    using System.Dynamic;
+
+    using Attributes;
+    using Extensions;
 
     public static class MvcHelper
     {
@@ -33,7 +37,7 @@
                 TagBuilder input = new TagBuilder("input");
                 input.Attributes.Add("type", "hidden");
                 input.Attributes.Add("name", renderToFormAs.ConstructorArguments[0].Value.ToString());
-                input.Attributes.Add("value", property.GetValue(settings).ToString());
+                input.Attributes.Add("value", GetValue(helper, property, settings));
 
                 form.InnerHtml += input.ToString(TagRenderMode.SelfClosing);
             }
@@ -52,6 +56,20 @@
             submit.Attributes.Add("value", "Wyślij");
             form.InnerHtml += submit.ToString(TagRenderMode.SelfClosing);
             return MvcHtmlString.Create(form.ToString(TagRenderMode.Normal));
+        }
+
+        private static string GetValue<T>(HtmlHelper<T> helper, PropertyInfo property, TransferujPlSettings settings)
+        {
+            var value = property.GetValue(settings);
+            var type = value.GetType();
+            if (type.IsAnonymousType())
+            {
+                var urlHelper = new UrlHelper(helper.ViewContext.RequestContext, helper.RouteCollection);
+                var controller = type.GetProperty("controller", BindingFlags.IgnoreCase | BindingFlags.Instance | BindingFlags.Public).GetValue(value);
+                var action = type.GetProperty("action", BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance).GetValue(value);
+                return urlHelper.Action(action.ToString(), controller.ToString(), null, "http");
+            }
+            return value.ToString();
         }
     }
 }

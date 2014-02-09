@@ -1,7 +1,12 @@
 ﻿namespace Transferujpl.Web.Helpers.Tests
 {
+    using Moq;
     using System;
     using System.Collections.Generic;
+    using System.IO;
+    using System.Web;
+    using System.Web.Mvc;
+    using System.Web.Routing;
     using Transferujpl.Web.Helpers.Settings;
     using Xunit;
     using Xunit.Extensions;
@@ -171,6 +176,94 @@
 
             var generatedForm = MvcHelper.TransferujPlForm<object>(null, settings).ToString();
             Assert.DoesNotContain(@"4F2957086AAA1AC69812574393D2A4A0", generatedForm);
+        }
+
+        [Fact]
+        void TransferujPlFormSuccessReturnUrlGeneratesCorrectUrl()
+        {
+            var settings = new TransferujPlSettings()
+            {
+                SellerId = 123,
+                Amount = 99,
+                Description = "Demo",
+                SuccessReturnUrl = new { controller = "Demo", action = "Success" }
+            };
+
+            var htmlHelper = CreateHtmlHelper<object>(new ViewDataDictionary());
+            var generatedForm = htmlHelper.TransferujPlForm<object>(settings).ToString();
+            Assert.Contains(@"<input name=""pow_url"" type=""hidden"" value=""http://jakis.adres/Demo/Success""", generatedForm);
+        }
+
+        [Fact]
+        void TransferujPlFormFailureUrlGeneratesCorrectUrl()
+        {
+            var settings = new TransferujPlSettings()
+            {
+                SellerId = 123,
+                Amount = 99,
+                Description = "Demo",
+                FailureReturnUrl = new { controller = "Demo", action = "Failure" }
+            };
+
+            var htmlHelper = CreateHtmlHelper<object>(new ViewDataDictionary());
+            var generatedForm = htmlHelper.TransferujPlForm<object>(settings).ToString();
+            Assert.Contains(@"<input name=""pow_url_blad"" type=""hidden"" value=""http://jakis.adres/Demo/Failure""", generatedForm);
+        }
+
+        [Fact]
+        void TransferujPlFormNotificationUrlGeneratedCorrectUrl()
+        {
+            var settings = new TransferujPlSettings()
+            {
+                SellerId = 123,
+                Amount = 99,
+                Description = "Demo",
+                NotificationUrl = new { controller = "Demo", action = "Notification"}
+            };
+
+            var htmlHelper = CreateHtmlHelper<object>(new ViewDataDictionary());
+            var generatedForm = htmlHelper.TransferujPlForm<object>(settings).ToString();
+            Assert.Contains(@"<input name=""wyn_url"" type=""hidden"" value=""http://jakis.adres/Demo/Notification""", generatedForm);
+        }
+
+        private HtmlHelper<T> CreateHtmlHelper<T>(ViewDataDictionary viewDataDictionary)
+        {
+            var mockRepository = new MockRepository(MockBehavior.Strict);
+            var iViewDataContainer = mockRepository.Create<IViewDataContainer>();
+            iViewDataContainer.Setup(x => x.ViewData).Returns(viewDataDictionary);
+            var routeCollection = new RouteCollection();
+            routeCollection.MapRoute(
+                name: "Default",
+                url: "{controller}/{action}/{id}",
+                defaults: new { id = UrlParameter.Optional }
+            );
+
+            var controller = mockRepository.Create<ControllerBase>();
+            var httpContext = MockHttpRequest(mockRepository);
+            var controllerContext = new ControllerContext(httpContext.Object, new RouteData(), controller.Object);
+
+            var viewContext = new ViewContext(controllerContext, mockRepository.Create<IView>().Object,
+                viewDataDictionary, new TempDataDictionary(), new StringWriter());
+            
+            return new HtmlHelper<T>(viewContext, iViewDataContainer.Object, routeCollection);
+        }
+
+        private static Mock<HttpContextBase> MockHttpRequest(MockRepository mockRepository)
+        {
+            var httpContext = mockRepository.Create<HttpContextBase>();
+
+            var request = mockRepository.Create<HttpRequestBase>();
+            request.Setup(x => x.ApplicationPath).Returns("/");
+            request.Setup(x => x.Url).Returns(new Uri("http://jakis.adres"));
+            httpContext.Setup(x => x.Request).Returns(request.Object);
+
+            var response = mockRepository.Create<HttpResponseBase>();
+            response.Setup(x => x.ApplyAppPathModifier(It.IsAny<string>())).Returns((string x) => x);
+            httpContext.Setup(x => x.Response).Returns(response.Object);
+
+            httpContext.Setup(x => x.GetService(It.IsAny<Type>())).Returns((Type)null);
+
+            return httpContext;
         }
     }
 }
