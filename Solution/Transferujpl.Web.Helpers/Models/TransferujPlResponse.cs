@@ -33,7 +33,7 @@ namespace Transferujpl.Web.Helpers.Models
 
         public static TransferujPlResponse FromNameValueCollection(NameValueCollection items)
         {
-            ILog log = LogManager.GetCurrentClassLogger();
+            ILog log = LogManager.GetLogger(typeof(TransferujPlResponse));
             log.Info("FromNameValueCollection started");
             var transferujPlResponse = new TransferujPlResponse();
             var properties = typeof(TransferujPlResponse).GetProperties().Where(x => x.CustomAttributes.Any(a => a.AttributeType == typeof(MapFromAttribute)));
