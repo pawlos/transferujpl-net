@@ -1,0 +1,30 @@
+<html>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<body>
+		<div id="content"></div>
+	</body>
+	<script type="text/javascript" src=" https://secure.transferuj.pl/channels-10100.js"></script>
+
+	<script type="application/javascript">
+
+		function ShowChannelsCombo()
+		{
+		var str='<form action="https://secure.transferuj.pl" method="post" name="payment">'+
+			'<input name="id" value="1010" type="hidden">'+
+			'<input name="kwota" value="1.00" type="hidden">'+
+			'<input name="opis" value="opis transakcji" type="hidden">'+
+			'<input name="akceptuje_regulamin" value="1" type="hidden">'+
+			'<select name="kanal">';
+				for(var i=0;i<tr_channels.length;i++)
+					{
+					str +='<option value="'+tr_channels[i][0]+'">'+tr_channels[i][1]+'</option>';
+					}
+					str+="</select><br><input type=\"submit\" value=\"Wyœlij\" /></form>";
+		document.getElementById('content').innerHTML=str;
+		}
+
+		window.onload = ShowChannelsCombo;
+
+	</script>
+
+</html>

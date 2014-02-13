@@ -1,0 +1,78 @@
+<html>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<style type="text/css">
+		<!--
+		#kanaly div.selected {
+			border: 2px solid #1E63A9;
+			border-radius: 4px 4px 4px 4px;
+			margin: 3px 3px -1px -1px;
+		}
+		#kanaly div {
+			background-position: left top;
+			background-repeat: no-repeat;
+			border: 1px solid #DADADA;
+			cursor: pointer;
+			float: left;
+			height: 88px;
+			margin-right: 4px;
+			margin-top: 4px;
+			padding: 5px;
+			position: relative;
+			width: 127px;
+			z-index: 4;
+		}
+
+		#kanaly div p.label {
+			border: 0 none;
+			bottom: 0;
+			color: #345565;
+			cursor: pointer;
+			font-size: 0.625em;
+			font-weight: bold;
+			left: 0;
+			margin: 0;
+			padding: 0 0 3px;
+			position: absolute;
+			right: 0;
+			text-align: center;
+		}
+		-->
+
+	</style>
+	<body>
+		<div id="content"></div>
+	</body>
+
+	<script type="text/javascript" src="https://secure.transferuj.pl/channels-10100.js"></script>
+	<script type="application/javascript">
+
+		function ShowChannels()
+		{
+			var str='<div id="kanaly"><form action="https://secure.transferuj.pl" method="post" name="payment">'+
+				'<input name="id" value="1010" type="hidden">'+
+				'<input name="kwota" value="1.00" type="hidden">'+
+				'<input name="opis" value="opis transakcji" type="hidden">'+
+				'<input name="akceptuje_regulamin" value="1" type="hidden">';
+				for(var i=0;i<tr_channels.length;i++)
+				{
+					var id = 'bank'+tr_channels[i][0];
+					var width_style = '';
+					var idi = 'i_'+id;
+					if(tr_channels[i][0] == 40) width_style = 'width:270px'; else width_style = '';
+					str +='<div id="'+id+'" onclick=\'document.getElementById("'+idi+'").checked=true;document.forms["payment"].submit();\' style="background-position:center;background-image:url('+tr_channels[i][3]+');'+width_style+'">';
+						str +='<input id="'+idi+'" type="radio" value="'+tr_channels[i][0]+'" name="kanal" '; if (i==0) str +='checked="checked"  />'; else str += ' />';
+										  str += '<p class="label">'+
+							'<label for="'+idi+'">'+tr_channels[i][1]+'</label>'+
+							'</p>'+
+						'</div>';
+				}
+					str+="</form></div>";
+					document.getElementById('content').innerHTML=str;
+		}
+
+		window.onload = ShowChannels;
+
+	</script>
+
+</html>
+
