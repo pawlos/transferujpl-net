@@ -60,16 +60,20 @@
 
         private static string GetValue<T>(HtmlHelper<T> helper, PropertyInfo property, TransferujPlSettings settings)
         {
-            var value = property.GetValue(settings);
-            var type = value.GetType();
+            var valueObject = property.GetValue(settings);
+            var type = valueObject.GetType();
+            if (type == typeof(bool))
+            {
+                return Convert.ToInt16((bool)valueObject).ToString();
+            }
             if (type.IsAnonymousType())
             {
                 var urlHelper = new UrlHelper(helper.ViewContext.RequestContext, helper.RouteCollection);
-                var controller = type.GetProperty("controller", BindingFlags.IgnoreCase | BindingFlags.Instance | BindingFlags.Public).GetValue(value);
-                var action = type.GetProperty("action", BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance).GetValue(value);
+                var controller = type.GetProperty("controller", BindingFlags.IgnoreCase | BindingFlags.Instance | BindingFlags.Public).GetValue(valueObject);
+                var action = type.GetProperty("action", BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance).GetValue(valueObject);
                 return urlHelper.Action(action.ToString(), controller.ToString(), null, "http");
             }
-            return value.ToString();
+            return valueObject.ToString();
         }
     }
 }

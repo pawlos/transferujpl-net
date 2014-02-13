@@ -207,7 +207,7 @@
 
             var htmlHelper = CreateHtmlHelper<object>(new ViewDataDictionary());
             var generatedForm = htmlHelper.TransferujPlForm<object>(settings).ToString();
-            Assert.Contains(@"<input name=""pow_url_blad"" type=""hidden"" value=""http://jakis.adres/Demo/Failure""", generatedForm);
+            Assert.Contains(@"<input name=""pow_url_blad"" type=""hidden"" value=""http://jakis.adres/Demo/Failure"" />", generatedForm);
         }
 
         [Fact]
@@ -223,7 +223,35 @@
 
             var htmlHelper = CreateHtmlHelper<object>(new ViewDataDictionary());
             var generatedForm = htmlHelper.TransferujPlForm<object>(settings).ToString();
-            Assert.Contains(@"<input name=""wyn_url"" type=""hidden"" value=""http://jakis.adres/Demo/Notification""", generatedForm);
+            Assert.Contains(@"<input name=""wyn_url"" type=""hidden"" value=""http://jakis.adres/Demo/Notification"" />", generatedForm);
+        }
+
+        [Fact]
+        void TransferujPlFormGeneratesCorrectOnlineTagWhenIsOnlineSetToTrue()
+        {
+            var settings = new TransferujPlSettings()
+            {
+                SellerId = 123,
+                Amount = 99,
+                Description = "Demo payment",
+                IsOnline = true
+            };
+            var generatedForm = MvcHelper.TransferujPlForm<object>(null, settings).ToString();
+            Assert.Contains(@"<input name=""online"" type=""hidden"" value=""1"" />", generatedForm);
+        }
+
+        [Fact]
+        void TransferujPlFormGeneratesCorrectOnlineTagWhenIsOnlineSetToFalse()
+        {
+            var settings = new TransferujPlSettings()
+            {
+                SellerId = 123,
+                Amount = 99,
+                Description = "Demo payment",
+                IsOnline = false
+            };
+            var generatedForm = MvcHelper.TransferujPlForm<object>(null, settings).ToString();
+            Assert.Contains(@"<input name=""online"" type=""hidden"" value=""0"" />", generatedForm);
         }
 
     }

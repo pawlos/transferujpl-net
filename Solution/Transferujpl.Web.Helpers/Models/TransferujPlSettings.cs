@@ -5,51 +5,58 @@ namespace Transferujpl.Web.Helpers.Settings
     public class TransferujPlSettings
     {
         //transaction
-        [RenderToFormAsAttribute("kwota")]
+        [RenderToFormAs("kwota")]
         public decimal Amount { get; set; }
-        [RenderToFormAsAttribute("opis")]
+        [RenderToFormAs("opis")]
         public string Description { get; set; }
-        [RenderToFormAsAttribute("crc")]
+        [RenderToFormAs("crc")]
         public string Crc { get; set; }
-        [RenderToFormAsAttribute("md5sum")]
+        [RenderToFormAs("md5sum")]
         public string Md5 { get; set; }
 
         //Seller
-        [RenderToFormAsAttribute("id")]
+        [RenderToFormAs("id")]
         public int SellerId { get; set; }
-        [RenderToFormAsAttribute("opis_sprzed")]
+        [RenderToFormAs("opis_sprzed")]
         public string SellerDescription {get;set;}
 
         //Notifications
-        [RenderToFormAsAttribute("wyn_url")]
+        [RenderToFormAs("wyn_url")]
         public dynamic NotificationUrl { get; set; }
-        [RenderToFormAsAttribute("wyn_email")]
+        [RenderToFormAs("wyn_email")]
         public string NotificationEmail { get; set; }
-        [RenderToFormAsAttribute("pow_url")]
+        [RenderToFormAs("pow_url")]
         public object SuccessReturnUrl { get; set; }
-        [RenderToFormAsAttribute("pow_url_blad")]
+        [RenderToFormAs("pow_url_blad")]
         public object FailureReturnUrl { get; set; }
 
         //Buyer
-        [RenderToFormAsAttribute("imie")]
+        [RenderToFormAs("imie")]
         public string BuyerFirstName { get; set; }
-        [RenderToFormAsAttribute("nazwisko")]
+        [RenderToFormAs("nazwisko")]
         public string BuyerLastName { get; set; }
-        [RenderToFormAsAttribute("email")]
+        [RenderToFormAs("email")]
         public string BuyerEmail { get; set; }
-        [RenderToFormAsAttribute("adres")]
+        [RenderToFormAs("adres")]
         public string BuyerAddress { get; set; }
-        [RenderToFormAsAttribute("miasto")]
+        [RenderToFormAs("miasto")]
         public string BuyerCity { get; set; }
-        [RenderToFormAsAttribute("kod")]
+        [RenderToFormAs("kod")]
         public string BuyerPostalCode { get; set; }
-        [RenderToFormAsAttribute("telefon")]
+        [RenderToFormAs("telefon")]
         public string BuyerPhoneNumber { get; set; }
-        [RenderToFormAsAttribute("kraj")]
+        [RenderToFormAs("kraj")]
         public string BuyerCountry { get; set; }
-        [RenderToFormAsAttribute("jezyk")]
+        [RenderToFormAs("jezyk")]
         public Language Language { get; set; }
 
+        //Misc
+        [RenderToFormAs("online")]
+        public bool IsOnline { get; set; }
+        [RenderToFormAs("kanal")]
+        public string Channel { get; set; }
+        [RenderToFormAs("zablokuj")]
+        public string Disable { get; set; }
         public bool SendIntegrityVerification { get; set; }
         public string SellerSecret { get; set; }
     }
