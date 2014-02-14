@@ -54,9 +54,9 @@ namespace Transferujpl.Web.Helpers.Settings
         [RenderToFormAs("online")]
         public bool IsOnline { get; set; }
         [RenderToFormAs("kanal")]
-        public string Channel { get; set; }
+        public int Channel { get; set; }
         [RenderToFormAs("zablokuj")]
-        public string Disable { get; set; }
+        public bool LockChannel { get; set; }
         public bool SendIntegrityVerification { get; set; }
         public string SellerSecret { get; set; }
     }

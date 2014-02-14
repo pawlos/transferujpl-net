@@ -254,5 +254,48 @@
             Assert.Contains(@"<input name=""online"" type=""hidden"" value=""0"" />", generatedForm);
         }
 
+        [Fact]
+        void TransferujPlFormGeneratesCorrectKanalTagWhenChannelIsSet()
+        {
+            var settings = new TransferujPlSettings()
+            {
+                SellerId = 123,
+                Amount = 99,
+                Description = "Demo payment",
+                Channel = 8
+            };
+
+            var generatedForm = MvcHelper.TransferujPlForm<object>(null, settings).ToString();
+            Assert.Contains(@"<input name=""kanal"" type=""hidden"" value=""8"" />", generatedForm);
+        }
+
+        [Fact]
+        void TransferujPlFormGeneratedCorrectZablokujTagWhenLockedIsSet()
+        {
+            var settings = new TransferujPlSettings()
+            {
+                SellerId = 123,
+                Amount = 99,
+                Description = "Demo payment",
+                LockChannel = true,
+                Channel = 2,
+            };
+            var generatedForm = MvcHelper.TransferujPlForm<object>(null, settings).ToString();
+            Assert.Contains(@"<input name=""zablokuj"" type=""hidden"" value=""1"" />", generatedForm);
+        }
+
+        [Fact]
+        void TransferujPlFormThrowsExceptionWhenLockChannelIsSetAndChannelIsNot()
+        {
+            var settings = new TransferujPlSettings
+            {
+                SellerId = 123,
+                Amount = 99,
+                Description = "Demo payment",
+                LockChannel = true
+            };
+
+            Assert.Throws<ArgumentException>(() => MvcHelper.TransferujPlForm<object>(null, settings));
+        }
     }
 }

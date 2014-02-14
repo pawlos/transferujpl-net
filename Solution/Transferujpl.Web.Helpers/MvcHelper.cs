@@ -22,6 +22,7 @@
             if (string.IsNullOrWhiteSpace(settings.Description)) throw new ArgumentException("Description is not set", "Description");
             if (settings.SendIntegrityVerification &&
                 string.IsNullOrWhiteSpace(settings.SellerSecret)) throw new ArgumentException("SellerSecret cannot be null when SendIntegrityVerification is set to true", "SendIntegrityVerification");
+            if (settings.LockChannel && settings.Channel <= 0) throw new ArgumentException("LockChannel cannot be set when Channel is not selected", "LockChannel");
 
             TagBuilder form = new TagBuilder("form");
             form.Attributes.Add("method", "post");
