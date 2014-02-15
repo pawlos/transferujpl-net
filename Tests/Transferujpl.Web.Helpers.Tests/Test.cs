@@ -41,7 +41,9 @@ namespace Transferujpl.Web.Helpers.Tests
             return new HtmlHelper<T>(viewContext, iViewDataContainer.Object, routeCollection);
         }
 
-        protected static Mock<HttpContextBase> MockHttpRequest(MockRepository mockRepository, Action<Mock<HttpRequestBase>> mockRequest = null)
+        protected static Mock<HttpContextBase> MockHttpRequest(MockRepository mockRepository, 
+                                                               Action<Mock<HttpRequestBase>> mockRequest = null,
+                                                               Action<Mock<HttpResponseBase>> mockResponse = null)
         {
             var httpContext = mockRepository.Create<HttpContextBase>();
 
@@ -55,6 +57,8 @@ namespace Transferujpl.Web.Helpers.Tests
             var response = mockRepository.Create<HttpResponseBase>();
             response.Setup(x => x.ApplyAppPathModifier(It.IsAny<string>())).Returns((string x) => x);
             httpContext.Setup(x => x.Response).Returns(response.Object);
+            if (mockResponse != null)
+                mockResponse(response);
 
             httpContext.Setup(x => x.GetService(It.IsAny<Type>())).Returns((Type)null);
 

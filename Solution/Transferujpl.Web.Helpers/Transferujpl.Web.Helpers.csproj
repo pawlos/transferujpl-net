@@ -73,6 +73,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActionResult\TransferujPlResult.cs" />
     <Compile Include="Attributes\MapFromAttribute.cs" />
     <Compile Include="Attributes\RenderToFormAsAttribute.cs" />
     <Compile Include="Binders\TransferujPlResponseModelBinder.cs" />

@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using Transferujpl.Web.Helpers.ActionResult;
 using Transferujpl.Web.Helpers.Binders;
 using Transferujpl.Web.Helpers.Models;
 
@@ -25,9 +26,9 @@ namespace Transferujpl.Web.Mvc.Controllers
         {
             if (response != null && ModelState.IsValid)
             {
-                Response.Write("YES");
+                
             }
-            return new EmptyResult();
+            return new TransferujPlActionResult();
         }
     }
 }
