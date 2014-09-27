@@ -17,7 +17,7 @@ namespace Transferujpl.Web.Mvc.Tests
             var httpContext = MockHttpRequest(MockRepository, null, r =>
             {
                 r.Setup(x => x.ApplyAppPathModifier(It.IsAny<string>()));
-                r.Setup(x => x.Write("YES")).Verifiable();
+                r.Setup(x => x.Write("TRUE")).Verifiable();
             });
             var controllerContext = new ControllerContext(httpContext.Object, new RouteData(), controller.Object);
             transferujPlActionResult.ExecuteResult(controllerContext);

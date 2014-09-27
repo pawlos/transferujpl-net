@@ -6,7 +6,7 @@ namespace Transferujpl.Web.Mvc.ActionResults
     {
         public override void ExecuteResult(ControllerContext context)
         {
-            context.RequestContext.HttpContext.Response.Write("YES");
+            context.RequestContext.HttpContext.Response.Write("TRUE");
         }
     }
 }
