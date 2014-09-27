@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Specialized;
+using System.Globalization;
 using System.Linq;
 
 namespace Transferujpl.Core
@@ -41,9 +42,13 @@ namespace Transferujpl.Core
                 if (items.AllKeys.Contains(name))
                 {
                     var type = property.PropertyType;
-                    if (log.IsDebugEnabled)
+                    log.Debug("Trying...{0}", property.Name);
+
+                    if (items.AllKeys.Contains(name))
+                    {
                         log.Debug("{0}-{1}", property.Name, items.AllKeys.Contains(name) ? items[name] : string.Empty);
-                    property.SetValue(transferujPlResponse, Convert.ChangeType(items[name], type));
+                        property.SetValue(transferujPlResponse, Convert.ChangeType(items[name], type, CultureInfo.InvariantCulture));
+                    }
                 }
             }
             log.Info("FromNameValueCollection ended");
