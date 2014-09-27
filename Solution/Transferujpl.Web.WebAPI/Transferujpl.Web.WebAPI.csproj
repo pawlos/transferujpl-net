@@ -56,6 +56,7 @@
   <ItemGroup>
     <Compile Include="Binders\BindTransferujPlAttribute.cs" />
     <Compile Include="Binders\TransferujPlResponseModelBinder.cs" />
+    <Compile Include="Helpers\HttpRequestMessageExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

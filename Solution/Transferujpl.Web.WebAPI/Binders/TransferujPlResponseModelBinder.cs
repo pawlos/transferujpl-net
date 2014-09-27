@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Web.Http.Controllers;
 using System.Web.Http.Metadata;
 using Transferujpl.Core;
+using Transferujpl.Web.WebAPI.Helpers;
 
 namespace Transferujpl.Web.WebAPI.Binders
 {
@@ -15,11 +16,12 @@ namespace Transferujpl.Web.WebAPI.Binders
 
         public override Task ExecuteBindingAsync(ModelMetadataProvider metadataProvider, HttpActionContext actionContext, CancellationToken cancellationToken)
         {
-            ILog log = LogManager.GetLogger(typeof(TransferujPlResponseModelBinder));
+            ILog log = LogManager.GetCurrentClassLogger();
             log.Info("ExecuteBindingAsync");
             var binding = actionContext.ActionDescriptor.ActionBinding;
 
-            if (actionContext.Request.Headers.Host != "195.149.229.109")
+            if (actionContext.Request.GetClientIpAddress() != "195.149.229.109" &&
+                actionContext.Request.IsLocal() == false)
             {
                 log.InfoFormat("Invalid IP - Expecting 195.149.229.109, got: {0}", 
                                         actionContext.Request.Headers.Host);
