@@ -1,7 +1,7 @@
 ﻿using System.Web.Mvc;
-using Transferujpl.Web.Helpers.ActionResult;
-using Transferujpl.Web.Helpers.Binders;
-using Transferujpl.Web.Helpers.Models;
+using Transferujpl.Core;
+using Transferujpl.Web.Mvc.ActionResults;
+using Transferujpl.Web.Mvc.Binders;
 
 namespace Transferujpl.Web.Mvc.Controllers
 {

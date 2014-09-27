@@ -1,7 +1,6 @@
-﻿using Transferujpl.Web.Helpers.Attributes;
-using Xunit;
+﻿using Xunit;
 
-namespace Transferujpl.Web.Helpers.Tests
+namespace Transferujpl.Core.Tests
 {
     public class MapFromAttributeTests
     {

@@ -1,15 +1,10 @@
 ﻿using Common.Logging;
 using Moq;
 using System;
-using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Transferujpl.Web.Helpers.Models;
 using Xunit;
 
-namespace Transferujpl.Web.Helpers.Tests
+namespace Transferujpl.Core.Tests
 {
     public class TransferujPlResponseTests
     {

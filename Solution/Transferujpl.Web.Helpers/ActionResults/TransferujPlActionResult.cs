@@ -1,8 +1,8 @@
 ﻿using System.Web.Mvc;
 
-namespace Transferujpl.Web.Helpers.ActionResult
+namespace Transferujpl.Web.Mvc.ActionResults
 {
-    public class TransferujPlActionResult : System.Web.Mvc.ActionResult
+    public class TransferujPlActionResult : ActionResult
     {
         public override void ExecuteResult(ControllerContext context)
         {

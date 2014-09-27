@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Transferujpl.Web.Helpers.Attributes
+namespace Transferujpl.Core
 {
     [AttributeUsage(AttributeTargets.Property)]
     public class MapFromAttribute : Attribute

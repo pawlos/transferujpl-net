@@ -4,10 +4,10 @@ using System.Collections.Specialized;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
-using Transferujpl.Web.Helpers.Binders;
+using Transferujpl.Web.Mvc.Binders;
 using Xunit;
 
-namespace Transferujpl.Web.Helpers.Tests
+namespace Transferujpl.Web.Mvc.Tests
 {
     public class TransferujPlResponseModelBinderTests : Test
     {

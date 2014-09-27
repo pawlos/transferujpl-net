@@ -1,13 +1,9 @@
-﻿namespace Transferujpl.Web.Helpers.Tests
+﻿namespace Transferujpl.Web.Mvc.Tests
 {
-    using Moq;
     using System;
     using System.Collections.Generic;
-    using System.IO;
-    using System.Web;
     using System.Web.Mvc;
-    using System.Web.Routing;
-    using Transferujpl.Web.Helpers.Settings;
+    using Core;
     using Xunit;
     using Xunit.Extensions;
 

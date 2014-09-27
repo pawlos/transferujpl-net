@@ -136,9 +136,13 @@
     <Content Include="Views\_ViewStart.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Transferujpl.Web.Helpers\Transferujpl.Web.Helpers.csproj">
+    <ProjectReference Include="..\Transferujpl.Core\Transferujpl.Core.csproj">
+      <Project>{9d72d2cd-5c78-47b4-976d-9463b334c262}</Project>
+      <Name>Transferujpl.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Transferujpl.Web.Helpers\Transferujpl.Web.Mvc.csproj">
       <Project>{5cc6f798-3641-4bcb-b999-6c68720ac66f}</Project>
-      <Name>Transferujpl.Web.Helpers</Name>
+      <Name>Transferujpl.Web.Mvc</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

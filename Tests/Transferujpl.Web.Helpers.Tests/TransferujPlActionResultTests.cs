@@ -1,10 +1,10 @@
 ﻿using Moq;
 using System.Web.Mvc;
 using System.Web.Routing;
-using Transferujpl.Web.Helpers.ActionResult;
+using Transferujpl.Web.Mvc.ActionResults;
 using Xunit;
 
-namespace Transferujpl.Web.Helpers.Tests
+namespace Transferujpl.Web.Mvc.Tests
 {
     public class TransferujPlActionResultTests : Test
     {

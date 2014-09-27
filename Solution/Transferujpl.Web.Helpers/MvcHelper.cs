@@ -1,16 +1,12 @@
-﻿namespace Transferujpl.Web.Helpers
+﻿namespace Transferujpl.Web.Mvc
 {
     using System.Web.Mvc;
-    using Settings;
     using System;
     using System.Linq;
     using System.Text;
     using System.Security.Cryptography;
     using System.Reflection;
-    using System.Dynamic;
-
-    using Attributes;
-    using Extensions;
+    using Transferujpl.Core;
 
     public static class MvcHelper
     {

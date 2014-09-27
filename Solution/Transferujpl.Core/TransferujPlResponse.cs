@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Specialized;
-using Transferujpl.Web.Helpers.Attributes;
 using System.Linq;
 using Common.Logging;
 
-namespace Transferujpl.Web.Helpers.Models
+namespace Transferujpl.Core
 {
     public class TransferujPlResponse
     {

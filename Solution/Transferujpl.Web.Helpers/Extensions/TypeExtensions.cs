@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Transferujpl.Web.Helpers.Extensions
+namespace Transferujpl.Web.Mvc
 {
     public static class TypeExtension
     {

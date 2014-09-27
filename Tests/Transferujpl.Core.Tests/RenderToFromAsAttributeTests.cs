@@ -1,7 +1,7 @@
-﻿using Transferujpl.Web.Helpers.Attributes;
+﻿using Transferujpl.Core;
 using Xunit;
 
-namespace Transferujpl.Web.Helpers.Tests
+namespace Transferujpl.Core.Tests
 {
     public class RenderToFromAsAttributeTests
     {

@@ -1,6 +1,4 @@
-﻿using Transferujpl.Web.Helpers.Attributes;
-
-namespace Transferujpl.Web.Helpers.Settings
+﻿namespace Transferujpl.Core
 {
     public class TransferujPlSettings
     {

@@ -1,15 +1,11 @@
 ﻿using Moq;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace Transferujpl.Web.Helpers.Tests
+namespace Transferujpl.Web.Mvc.Tests
 {
     public class Test
     {

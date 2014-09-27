@@ -1,7 +1,7 @@
 ﻿using System.Web.Mvc;
-using Transferujpl.Web.Helpers.Models;
+using Transferujpl.Core;
 
-namespace Transferujpl.Web.Helpers.Binders
+namespace Transferujpl.Web.Mvc.Binders
 {
     public class TransferujPlResponseModelBinder : IModelBinder
     {
