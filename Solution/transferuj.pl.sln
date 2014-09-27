@@ -20,6 +20,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transferujpl.Core", "Transf
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transferujpl.Core.Tests", "..\Tests\Transferujpl.Core.Tests\Transferujpl.Core.Tests.csproj", "{21615CAC-FE78-497F-9E6E-23270C047804}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transferujpl.Web.WebAPI", "Transferujpl.Web.WebAPI\Transferujpl.Web.WebAPI.csproj", "{ADCB5AD7-8867-4651-9AD6-3F9B3BE40779}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -46,6 +48,10 @@ Global
 		{21615CAC-FE78-497F-9E6E-23270C047804}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21615CAC-FE78-497F-9E6E-23270C047804}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{21615CAC-FE78-497F-9E6E-23270C047804}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADCB5AD7-8867-4651-9AD6-3F9B3BE40779}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADCB5AD7-8867-4651-9AD6-3F9B3BE40779}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADCB5AD7-8867-4651-9AD6-3F9B3BE40779}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADCB5AD7-8867-4651-9AD6-3F9B3BE40779}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
