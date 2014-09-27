@@ -1,5 +1,4 @@
-﻿using Common.Logging;
-using System;
+﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Http.Controllers;
@@ -16,14 +15,14 @@ namespace Transferujpl.Web.WebAPI.Binders
 
         public override Task ExecuteBindingAsync(ModelMetadataProvider metadataProvider, HttpActionContext actionContext, CancellationToken cancellationToken)
         {
-            ILog log = LogManager.GetCurrentClassLogger();
+            var log = NLog.LogManager.GetCurrentClassLogger();
             log.Info("ExecuteBindingAsync");
             var binding = actionContext.ActionDescriptor.ActionBinding;
 
             if (actionContext.Request.GetClientIpAddress() != "195.149.229.109" &&
                 actionContext.Request.IsLocal() == false)
             {
-                log.InfoFormat("Invalid IP - Expecting 195.149.229.109, got: {0}", 
+                log.Info("Invalid IP - Expecting 195.149.229.109, got: {0}", 
                                         actionContext.Request.Headers.Host);
                 throw new InvalidOperationException("Invalid IP.");
             }
@@ -40,8 +39,10 @@ namespace Transferujpl.Web.WebAPI.Binders
                     .ContinueWith((task) =>
                     {
                         var stringResult = task.Result;
-                        log.DebugFormat("Detailed info: {0}", stringResult);
-                        SetValue(actionContext, new TransferujPlResponse());
+                        log.Debug("Detailed info: {0}", stringResult);
+
+                        SetValue(actionContext, TransferujPlResponse.FromNameValueCollection(
+                                    stringResult.ToNameValueCollection()));
                     });
         }
 

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Specialized;
 using System.Linq;
-using Common.Logging;
 
 namespace Transferujpl.Core
 {
@@ -32,7 +31,7 @@ namespace Transferujpl.Core
 
         public static TransferujPlResponse FromNameValueCollection(NameValueCollection items)
         {
-            ILog log = LogManager.GetLogger(typeof(TransferujPlResponse));
+            var log = NLog.LogManager.GetCurrentClassLogger();
             log.Info("FromNameValueCollection started");
             var transferujPlResponse = new TransferujPlResponse();
             var properties = typeof(TransferujPlResponse).GetProperties().Where(x => x.CustomAttributes.Any(a => a.AttributeType == typeof(MapFromAttribute)));
@@ -43,7 +42,7 @@ namespace Transferujpl.Core
                 {
                     var type = property.PropertyType;
                     if (log.IsDebugEnabled)
-                        log.DebugFormat("{0}-{1}", property.Name, items[name]);
+                        log.Debug("{0}-{1}", property.Name, items.AllKeys.Contains(name) ? items[name] : string.Empty);
                     property.SetValue(transferujPlResponse, Convert.ChangeType(items[name], type));
                 }
             }
